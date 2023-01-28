@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formulaire de saisie des thèmes et mots clés</title>
+  <script>
+    // Fonction qui sera appelée lorsque le bouton est cliqué
+    function submitForm() {
+      // Récupère l'élément formulaire
+      var form = document.querySelector("form");
+      // Soumet le formulaire
+      form.submit();
+    }
+
+    // Ajoute un écouteur d'événement pour le clic sur le bouton
+    document.querySelector("#submit-button").addEventListener("click", submitForm);
+  </script>
+</head>
+<body>
+  <form>
+    <label for="themes">Thèmes :</label>
+    <input type="text" id="themes" name="themes"><br><br>
+    <label for="mots-cles">Mots clés :</label>
+    <input type="text" id="mots-cles" name="mots-cles"><br><br>
+  </form> 
+  <br>
+  <button id="submit-button">Envoyer</button>
+</body>
+</html>

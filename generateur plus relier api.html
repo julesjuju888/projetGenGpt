@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Génération de texte avec GPT-3</title>
+  <link rel="stylesheet" type="text/css" href="body.css">
+</head>
+<body>
+  <form>
+    <label for="prompt-input">Entrez votre prompt :</label>
+    <textarea id="prompt-input"></textarea><br><br>
+    <button id="generate-text-button">Générer</button>
+  </form>
+  <br>
+  <div id="generated-text-container">
+    <h2>Texte généré :</h2>
+    <div id="generated-text"></div>
+  </div>
+
+  <script>
+    const generateTextButton = document.querySelector("#generate-text-button");
+    generateTextButton.addEventListener("click", function() {
+      const promptInput = document.querySelector("#prompt-input").value;
+      const apiKey = "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";
+      fetch("https://api.openai.com/v1/engines/davinci-codex/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          prompt: promptInput,
+          temperature: 0.5
+        })
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          const generatedText = data.choices[0].text;
+          document.querySelector("#generated-text").innerHTML = generatedText;
+        })
+        .catch((error) => {
+          console.error("Error fetching GPT-3 response:", error);
+        });
+    });
+  </script>
+</body>
+</html>
